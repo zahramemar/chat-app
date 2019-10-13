@@ -9,9 +9,9 @@ const CREATE_ANSWER_MUTATION = gql`
       objects: { sender: $sender, receiver: $receiver, text: $text }
     ) {
       returning {
+        receiver
         id
         sender
-        receiver
         text
       }
     }

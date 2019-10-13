@@ -1,9 +1,9 @@
 import React from "react";
 import RMessage from "./RightMessage";
 import LMessage from "./LeftMessage";
-import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import Answer from "./Answer";
+import { useSubscription } from "@apollo/react-hooks";
 
 export const MESSAGES_QUERY = gql`
   {
@@ -19,37 +19,40 @@ export const MESSAGES_QUERY = gql`
   }
 `;
 
+const MESSAGES_SUBSCRIPTION = gql`
+  subscription {
+    messages(order_by: { id: asc }) {
+      id
+      text
+      sender
+      receiver
+    }
+  }
+`;
 export default () => {
+  const { loading, error, data } = useSubscription(MESSAGES_SUBSCRIPTION);
+  if (loading) return <div>Fetching</div>;
+  if (error) return <div>Error</div>;
+
   return (
     <div className="Chat">
-      <Query query={MESSAGES_QUERY}>
-        {({ loading, error, data }) => {
-          if (loading) return <div>Fetching</div>;
-          if (error) return <div>Error</div>;
-
-          return (
-            <>
-              <div
-                className="messages"
-                ref={msgList => {
-                  if (msgList) msgList.scrollTop = msgList.scrollHeight;
-                }}
-              >
-                {data.messages.map(message => (
-                  <>
-                    {message.sender === 1 ? (
-                      <RMessage key={message.id} data={message} />
-                    ) : (
-                      <LMessage key={message.id} data={message} />
-                    )}
-                  </>
-                ))}
-              </div>
-              <Answer />
-            </>
-          );
+      <div
+        className="messages"
+        ref={msgList => {
+          if (msgList) msgList.scrollTop = msgList.scrollHeight;
         }}
-      </Query>
+      >
+        {data.messages.map(message => (
+          <>
+            {message.sender === 1 ? (
+              <RMessage key={message.id} data={message} />
+            ) : (
+              <LMessage key={message.id} data={message} />
+            )}
+          </>
+        ))}
+      </div>
+      <Answer />
     </div>
   );
 };
