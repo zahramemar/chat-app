@@ -1,3 +1,9 @@
+.container {
+}
+body {
+  padding: 0;
+  margin: 0;
+}
 .App {
   text-align: center;
 }
@@ -22,7 +28,7 @@
 }
 
 .Chat_compose {
-  padding: 1px;
+  padding: 15px;
 }
 .App {
   display: flex;
@@ -83,8 +89,7 @@
 
 .message {
   border-radius: 0.5rem;
-  padding: 1rem;
-  padding-bottom: 0.5rem;
+  padding: 10px 15px 10px 15px;
   min-width: 10vh;
   box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.08);
   display: block;
@@ -95,11 +100,16 @@
   background: #fefefe;
   background: linear-gradient(101.72deg, #ffc2b0 3.3%, #ffe1c8 96.68%);
   border-radius: 0px 22px 22px 16px;
+
+  max-width: 70vh;
+  word-break: break-all;
 }
 
 .message-self {
   background: linear-gradient(101.72deg, #ffe1c8 3.3%, #ffc2b0 96.68%);
   border-radius: 22px 0px 16px 22px;
+  max-width: 70vh;
+  word-break: break-all;
 }
 
 /* login  */
@@ -129,11 +139,12 @@
   box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
   border-radius: 0.5rem;
   color: white;
-  width: 9%;
+  width: 13%;
   padding: 12px;
   text-align: center;
   background: linear-gradient(90deg, #ff545b 0%, #ff825b 100%);
   border-radius: 40px;
+  margin-left: 5px;
 }
 .Login__button {
   box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
@@ -147,6 +158,9 @@
   background: linear-gradient(90deg, #ff545b 0%, #ff825b 100%);
   border-radius: 40px;
 }
+.message_wrapper_inner {
+  margin-top: 10px;
+}
 
 .Login__button:hover {
   cursor: pointer;
@@ -159,6 +173,10 @@
 .Chat_compose_input {
   border-radius: 20px;
   height: 33px;
-  width: 89%;
+  width: 83%;
   border: 2px solid orange;
+  padding-left: 10px;
+}
+input:focus {
+  outline: none;
 }

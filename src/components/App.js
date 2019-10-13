@@ -7,13 +7,15 @@ const userId = urlParams.get("userId");
 const otherUserId = urlParams.get("otherUserId");
 export default function App() {
   return (
-    <div className="App">
-      <div className="App_chatwindow">
-        {userId && otherUserId ? (
-          <Chat userId={userId} otherUserId={otherUserId} />
-        ) : (
-          <Login />
-        )}
+    <div className="container">
+      <div className="App">
+        <div className="App_chatwindow">
+          {userId && otherUserId ? (
+            <Chat userId={userId} otherUserId={otherUserId} />
+          ) : (
+            <Login />
+          )}
+        </div>
       </div>
     </div>
   );
