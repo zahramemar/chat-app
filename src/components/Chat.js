@@ -25,10 +25,26 @@ export default () => {
           if (loading) return <div>Fetching</div>;
           if (error) return <div>Error</div>;
 
-          const mine = data.messages.filter(message => message.sender == 1);
-          const other = data.messages.filter(message => message.sender == 2);
-
-          return <></>;
+          return (
+            <>
+              <div
+                className="messages"
+                ref={msgList => {
+                  if (msgList) msgList.scrollTop = msgList.scrollHeight;
+                }}
+              >
+                {data.messages.map(message => (
+                  <>
+                    {message.sender === 1 ? (
+                      <RMessage key={"right" + message.id} data={message} />
+                    ) : (
+                      <LMessage key={"left" + message.id} data={message} />
+                    )}
+                  </>
+                ))}
+              </div>
+            </>
+          );
         }}
       </Query>
     </div>
