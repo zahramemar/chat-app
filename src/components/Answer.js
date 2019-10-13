@@ -18,11 +18,17 @@ const CREATE_ANSWER_MUTATION = gql`
   }
 `;
 
-export default function Answer() {
+export default function Answer({ userId, otherUserId }) {
   return (
     <Mutation mutation={CREATE_ANSWER_MUTATION}>
       {sendAnswer => {
-        return <Input clickProps={sendAnswer} />;
+        return (
+          <Input
+            clickProps={sendAnswer}
+            sender={userId}
+            receiver={otherUserId}
+          />
+        );
       }}
     </Mutation>
   );

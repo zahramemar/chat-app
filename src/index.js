@@ -9,9 +9,12 @@ import { ApolloClient } from "apollo-client";
 import { WebSocketLink } from "apollo-link-ws";
 import { InMemoryCache } from "apollo-cache-inmemory";
 
-const web = new WebSocketLink({
-  uri: "wss://chat-react-example.herokuapp.com/v1/graphql"
-});
+const web = new WebSocketLink(
+  {
+    uri: "wss://chat-react-example.herokuapp.com/v1/graphql"
+  },
+  { transports: ["websocket"] }
+);
 
 const client = new ApolloClient({
   link: web,

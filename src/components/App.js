@@ -1,11 +1,19 @@
 import React from "react";
 import Chat from "./Chat";
+import Login from "./Login";
 
+const urlParams = new URLSearchParams(window.location.search);
+const userId = urlParams.get("userId");
+const otherUserId = urlParams.get("otherUserId");
 export default function App() {
   return (
     <div className="App">
       <div className="App_chatwindow">
-        <Chat />
+        {userId && otherUserId ? (
+          <Chat userId={userId} otherUserId={otherUserId} />
+        ) : (
+          <Login />
+        )}
       </div>
     </div>
   );

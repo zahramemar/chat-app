@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function Input({ clickProps }) {
+export default function Input({ clickProps, sender, receiver }) {
   const [answerInput, setAnswerInput] = useState("");
 
   return (
@@ -18,8 +18,8 @@ export default function Input({ clickProps }) {
           clickProps({
             variables: {
               text: answerInput,
-              sender: 1,
-              receiver: 2
+              sender,
+              receiver
             }
           });
         }}

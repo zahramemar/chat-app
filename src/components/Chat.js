@@ -3,7 +3,7 @@ import RMessage from "./RightMessage";
 import LMessage from "./LeftMessage";
 import gql from "graphql-tag";
 import Answer from "./Answer";
-import { useSubscription } from "@apollo/react-hooks";
+import { useSubscription, useQuery } from "@apollo/react-hooks";
 
 export const MESSAGES_QUERY = gql`
   {
@@ -21,7 +21,7 @@ export const MESSAGES_QUERY = gql`
 
 const MESSAGES_SUBSCRIPTION = gql`
   subscription {
-    messages(order_by: { id: asc }) {
+    messages(order_by: { id: desc }, limit: 1) {
       id
       text
       sender
@@ -29,8 +29,12 @@ const MESSAGES_SUBSCRIPTION = gql`
     }
   }
 `;
-export default () => {
-  const { loading, error, data } = useSubscription(MESSAGES_SUBSCRIPTION);
+
+export default ({ userId, otherUserId }) => {
+  const { loading, error, data, refetch } = useQuery(MESSAGES_QUERY);
+  useSubscription(MESSAGES_SUBSCRIPTION);
+  refetch();
+
   if (loading) return <div>Fetching</div>;
   if (error) return <div>Error</div>;
 
@@ -44,7 +48,7 @@ export default () => {
       >
         {data.messages.map(message => (
           <>
-            {message.sender === 1 ? (
+            {message.sender === parseInt(userId) ? (
               <RMessage key={message.id} data={message} />
             ) : (
               <LMessage key={message.id} data={message} />
@@ -52,7 +56,7 @@ export default () => {
           </>
         ))}
       </div>
-      <Answer />
+      <Answer userId={userId} otherUserId={otherUserId} />
     </div>
   );
 };
