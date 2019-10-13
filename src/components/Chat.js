@@ -22,7 +22,6 @@ export const MESSAGES_QUERY = gql`
 export default () => {
   return (
     <div className="Chat">
-      {/* technical debt  shoub be changed to useQuery*/}
       <Query query={MESSAGES_QUERY}>
         {({ loading, error, data }) => {
           if (loading) return <div>Fetching</div>;
@@ -39,9 +38,9 @@ export default () => {
                 {data.messages.map(message => (
                   <>
                     {message.sender === 1 ? (
-                      <RMessage key={"right" + message.id} data={message} />
+                      <RMessage key={message.id} data={message} />
                     ) : (
-                      <LMessage key={"left" + message.id} data={message} />
+                      <LMessage key={message.id} data={message} />
                     )}
                   </>
                 ))}

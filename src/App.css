@@ -20,3 +20,89 @@
 .App-link {
   color: #09d3ac;
 }
+
+.Chat {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.App {
+  display: flex;
+  justify-content: center;
+}
+
+.App_chatwindow {
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.08);
+  display: flex;
+  width: 70%;
+  height: 100vh;
+  background-color: red;
+}
+
+.msg {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+
+.msg-img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  background: #ddd;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.right-msg {
+  flex-direction: row-reverse;
+}
+
+.right-msg .msg-img {
+  margin: 0 0 0 10px;
+}
+
+.Chat {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.messages {
+  background-color: yellow;
+  flex: 1;
+  padding: 1rem 1rem;
+  overflow-y: scroll;
+}
+
+.message_wrapper-other {
+  justify-content: flex-start;
+}
+
+.message_wrapper-self {
+  justify-content: flex-end;
+}
+
+.message {
+  border-radius: 0.5rem;
+  padding: 1rem;
+  padding-bottom: 0.5rem;
+  min-width: 10vh;
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.08);
+  display: block;
+  position: relative;
+}
+
+.message-other {
+  background: #fefefe;
+  background: gray;
+  border-radius: 0px 22px 22px 16px;
+}
+
+.message-self {
+  background: blue;
+  border-radius: 22px 0px 16px 22px;
+}
