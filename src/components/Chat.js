@@ -7,7 +7,10 @@ import Answer from "./Answer";
 
 export const MESSAGES_QUERY = gql`
   {
-    messages(where: { receiver: { _in: [1, 2] }, sender: { _in: [1, 2] } }) {
+    messages(
+      where: { receiver: { _in: [1, 2] }, sender: { _in: [1, 2] } }
+      order_by: { created_at: asc }
+    ) {
       receiver
       id
       sender
