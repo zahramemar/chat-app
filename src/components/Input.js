@@ -13,7 +13,7 @@ export default function Input({ clickProps, sender, receiver }) {
         onChange={e => setAnswerInput(e.target.value)}
       />
       <button
-        className="Chat_compose_button"
+        className="Chat_compose_button button"
         onClick={e => {
           clickProps({
             variables: {

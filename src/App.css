@@ -21,11 +21,8 @@
   color: #09d3ac;
 }
 
-.Chat {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+.Chat_compose {
+  padding: 1px;
 }
 .App {
   display: flex;
@@ -37,12 +34,10 @@
   display: flex;
   width: 70%;
   height: 100vh;
-  background-color: #fff8f1;
 }
 
 .msg {
   display: flex;
-  align-items: baseline;
   margin-bottom: 10px;
 }
 
@@ -72,7 +67,7 @@
   flex-grow: 1;
 }
 .messages {
-  background-color: yellow;
+  background-color: #fff8f1;
   flex: 1;
   padding: 1rem 1rem;
   overflow-y: scroll;
@@ -98,12 +93,12 @@
 
 .message-other {
   background: #fefefe;
-  background: gray;
+  background: linear-gradient(101.72deg, #ffc2b0 3.3%, #ffe1c8 96.68%);
   border-radius: 0px 22px 22px 16px;
 }
 
 .message-self {
-  background: blue;
+  background: linear-gradient(101.72deg, #ffe1c8 3.3%, #ffc2b0 96.68%);
   border-radius: 22px 0px 16px 22px;
 }
 
@@ -130,7 +125,16 @@
   margin-top: 0;
   margin-bottom: 2.5rem;
 }
-
+.button {
+  box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  color: white;
+  width: 9%;
+  padding: 12px;
+  text-align: center;
+  background: linear-gradient(90deg, #ff545b 0%, #ff825b 100%);
+  border-radius: 40px;
+}
 .Login__button {
   box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
   border-radius: 0.5rem;
@@ -147,4 +151,14 @@
 .Login__button:hover {
   cursor: pointer;
   background: #ff825b;
+}
+.button:hover {
+  cursor: pointer;
+  background: #ff825b;
+}
+.Chat_compose_input {
+  border-radius: 20px;
+  height: 33px;
+  width: 89%;
+  border: 2px solid orange;
 }
