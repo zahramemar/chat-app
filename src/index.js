@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
-import "./styles/style.scss";
+import "./App.css";
 
 // 1
 import { ApolloProvider } from "react-apollo";
