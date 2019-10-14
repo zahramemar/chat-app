@@ -1,6 +1,6 @@
 import React from "react";
-import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
+import { useMutation } from "@apollo/react-hooks";
 import Input from "./Input";
 
 const CREATE_ANSWER_MUTATION = gql`
@@ -19,17 +19,9 @@ const CREATE_ANSWER_MUTATION = gql`
 `;
 
 export default function Answer({ userId, otherUserId }) {
+  const [sendAnswer] = useMutation(CREATE_ANSWER_MUTATION);
+
   return (
-    <Mutation mutation={CREATE_ANSWER_MUTATION}>
-      {sendAnswer => {
-        return (
-          <Input
-            clickProps={sendAnswer}
-            sender={userId}
-            receiver={otherUserId}
-          />
-        );
-      }}
-    </Mutation>
+    <Input clickProps={sendAnswer} sender={userId} receiver={otherUserId} />
   );
 }
