@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import RMessage from "./RightMessage";
 import LMessage from "./LeftMessage";
 import gql from "graphql-tag";
@@ -20,19 +20,20 @@ export const MESSAGES_QUERY = gql`
 `;
 
 export default ({ userId, otherUserId }) => {
+  const div = useRef(null);
   const { loading, error, data } = useSubscription(MESSAGES_QUERY);
+  useEffect(() => {
+    if (div.current) {
+      div.current.scrollTop = div.current.scrollHeight;
+    }
+  });
 
   if (loading) return <div>Fetching</div>;
   if (error) return <div>Error</div>;
 
   return (
     <div className="Chat">
-      <div
-        className="messages"
-        ref={msgList => {
-          if (msgList) msgList.scrollTop = msgList.scrollHeight;
-        }}
-      >
+      <div className="messages" ref={div}>
         {data.messages.map(message =>
           message.sender === parseInt(userId) ? (
             <RMessage key={message.id} data={message} />
